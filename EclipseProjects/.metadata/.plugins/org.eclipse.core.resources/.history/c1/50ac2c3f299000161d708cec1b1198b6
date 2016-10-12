@@ -1,0 +1,32 @@
+#!/usr/bing/python3
+
+import smtplib
+from http.client import HTTPSConnection
+
+httpsConn = ''
+msg = ''
+
+try:
+    httpsConn = smtplib.SMTP('test39909@gmail.com', 587)
+    httpsConn.ehlo()
+    httpsConn.starttls()
+    httpsConn.login('test39909@gmail.com', 'justtest39909')
+    
+    from1 = 'test39909@gmail.com'
+    to = 'test39909@gmail.com'
+    email_text = """\  
+
+    From: %s  
+    To: %s  
+    Subject: %s
+
+    %s
+    """ % (from1, ", ".join(to), subject, body)
+    
+    httpsConn.send(from1, to, email_text)
+    httpsConn.close()
+
+except:
+    print("Problem with connection")  
+    
+    
