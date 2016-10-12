@@ -10,9 +10,9 @@ try:
     
     print("Starting connection")
           
-    httpsConn = smtplib.SMTP("test39909@mail.com:587")
+    httpsConn = smtplib.SMTP('smtp.mail.com', 587)
     
-    print("1")
+    print("Connection established")
     httpsConn.ehlo()
     httpsConn.starttls()
     httpsConn.ehlo()
@@ -20,6 +20,8 @@ try:
     
     from1 = 'test39909@mail.com'
     to = 'test39909@mail.com'
+    
+    message = 'This is a test e-mail message.'
        
     msg = "\r\n".join([
           "From: test39909@mail.com",
@@ -31,10 +33,13 @@ try:
     
     print('Message ready to send')
     
-    httpsConn.send(from1, to, msg)
-    httpsConn.close()
+    httpsConn.sendmail(from1, to, msg)
     
-    print('Sending email successful')
+    print("Message sent, attempting to close connection")
+    httpsConn.close()
+    print("Message sent, closed connection")
+    
+    print('Email successfully sent')
 
 except:
     print("Problem with connection")  
